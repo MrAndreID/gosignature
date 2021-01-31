@@ -29,7 +29,7 @@ go get -u github.com/MrAndreID/gosignature
 
 ## Usage
 
-### Generate a Signature.
+### Generate a Signature
 
 ```go
 signature, err := gosignature.Generate([]byte(`-----BEGIN RSA PRIVATE KEY-----
@@ -49,9 +49,30 @@ Output:
 ZMVHtYqKTgwsBItALtoE71ApBVJSQ1vxtW9a9oiugGZkhpIUBHtKTpL5e29CAeZnwlHTurUxpk1aH2RHx9sx3Q==
 ```
 
+### Signature Verification
+
+```go
+verify, err := gosignature.Verify(signature, []byte(`-----BEGIN PUBLIC KEY-----
+MFswDQYJKoZIhvcNAQEBBQADSgAwRwJAfBNTEHscBt+jNL+Ry1aqPoICoM8fuSpC
+kFN3KZ37zVEWu6Poav56yp1i5D4ngVQ7vW2w2Go7M8TCfNS4aLna3wIDAQAB
+-----END PUBLIC KEY-----`), []byte(`Andrea Adam`))
+
+if verify == false {
+    fmt.Println("Signature verification failed because : ", err)
+} else {
+    fmt.Println("Signature verification was successful")
+}
+```
+
+Output:
+
+```sh
+Signature verification was successful
+```
+
 ## Full Example
 
-Full Example can be found on the [Go Playground website](https://play.golang.com/p/u5FeQ8ZzPG-).
+Full Example can be found on the [Go Playground website](https://play.golang.com/p/LfI8dDO-Vzt).
 
 ## Versioning
 
